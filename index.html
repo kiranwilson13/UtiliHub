@@ -39,57 +39,50 @@
       flex-direction: column;
     }
 
-/* Header stays the same as before */
-header {
-  background: var(--primary);
-  color: white;
-  padding: 20px 24px;
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 700;
-  user-select: none;
-  box-shadow: 0 3px 8px var(--shadow);
-  letter-spacing: 1px;
-  position: relative;
-  z-index: 5;
-}
+    header {
+      background: var(--primary);
+      color: white;
+      padding: 20px 24px;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      user-select: none;
+      box-shadow: 0 3px 8px var(--shadow);
+      letter-spacing: 1px;
+      position: relative;
+      z-index: 5;
+    }
 
-/* Dark mode toggle on the LEFT side */
-.dark-toggle {
-  position: fixed;
-  top: 40px;      /* vertical offset from top */
-  left: 20px;     /* fixed left margin */
-  background: var(--primary);
-  color: white;
-  padding: 12px;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  font-size: 1.3rem;
-  transition: background 0.3s ease;
-  z-index: 10;
-  box-shadow: 0 3px 8px var(--shadow);
-}
-.dark-toggle:hover {
-  background: #596ddf;
-}
-
-/* On small screens, keep it at top-left but smaller and spaced */
-@media (max-width: 768px) {
-  .dark-toggle {
-    top: 12px;
-    left: 16px;
-    padding: 10px;
-    font-size: 1.1rem;
-    z-index: 15;
-  }
-  header {
-    padding-top: 60px; /* space if needed */
-  }
-}
-
+    .dark-toggle {
+      position: fixed;
+      top: 40px;
+      left: 20px;
+      background: var(--primary);
+      color: white;
+      padding: 12px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      font-size: 1.3rem;
+      transition: background 0.3s ease;
+      z-index: 10;
+      box-shadow: 0 3px 8px var(--shadow);
+    }
     .dark-toggle:hover {
       background: #596ddf;
+    }
+
+    @media (max-width: 768px) {
+      .dark-toggle {
+        top: 12px;
+        left: 16px;
+        padding: 10px;
+        font-size: 1.1rem;
+        z-index: 15;
+      }
+      header {
+        padding-top: 60px;
+      }
     }
 
     .container {
@@ -190,7 +183,6 @@ header {
       color: white;
     }
 
-    /* Responsive */
     @media (max-width: 900px) {
       .container {
         max-width: 90vw;
@@ -299,216 +291,250 @@ header {
       <div class="output" id="currencyOutput" aria-live="polite"></div>
     </div>
 
-    <!-- Percentage Calculator -->
-    <div class="card" id="percentageCalculator">
-      <h2>Percentage Calculator</h2>
-      <input type="number" id="percentageValue" placeholder="Value" aria-label="Value" />
-      <input type="number" id="percentageTotal" placeholder="Total" aria-label="Total" />
-      <button onclick="calculatePercentage()">Calculate %</button>
-      <div class="output" id="percentageOutput" aria-live="polite"></div>
+    <!-- Password Generator -->
+    <div class="card" id="passwordGenerator">
+      <h2>Password Generator</h2>
+      <label for="passLength">Password Length:</label>
+      <input type="number" id="passLength" min="4" max="64" value="12" aria-label="Password length" />
+      <fieldset style="margin-top: 10px; border: none; padding: 0;">
+        <legend>Include Characters:</legend>
+        <label><input type="checkbox" id="includeUpper" checked /> Uppercase (A-Z)</label><br />
+        <label><input type="checkbox" id="includeLower" checked /> Lowercase (a-z)</label><br />
+        <label><input type="checkbox" id="includeNumbers" checked /> Numbers (0-9)</label><br />
+        <label><input type="checkbox" id="includeSymbols" /> Symbols (!@#$...)</label>
+      </fieldset>
+      <button onclick="generatePassword()">Generate Password</button>
+      <div class="output" id="passwordOutput" aria-live="polite"></div>
     </div>
 
-    <!-- Age Calculator -->
-    <div class="card" id="ageCalculator">
-      <h2>Age Calculator</h2>
-      <input type="date" id="birthDate" aria-label="Date of birth" />
-      <button onclick="calculateAge()">Calculate Age</button>
-      <div class="output" id="ageOutput" aria-live="polite"></div>
+    <!-- Text Converter -->
+    <div class="card" id="textConverter">
+      <h2>Text Converter</h2>
+      <textarea id="textInput" rows="4" placeholder="Enter text here" aria-label="Input text"></textarea>
+      <select id="textConversionType" aria-label="Select text conversion">
+        <option value="uppercase">Uppercase</option>
+        <option value="lowercase">Lowercase</option>
+        <option value="capitalize">Capitalize Each Word</option>
+        <option value="reverse">Reverse Text</option>
+        <option value="removeSpaces">Remove Extra Spaces</option>
+      </select>
+      <button onclick="convertText()">Convert</button>
+      <div class="output" id="textOutput" aria-live="polite"></div>
     </div>
 
-    <!-- BMI Calculator -->
-    <div class="card" id="bmiCalculator">
-      <h2>BMI Calculator</h2>
-      <input type="number" id="bmiWeight" placeholder="Weight (kg)" aria-label="Weight in kilograms" />
-      <input type="number" id="bmiHeight" placeholder="Height (cm)" aria-label="Height in centimeters" />
-      <button onclick="calculateBMI()">Calculate BMI</button>
-      <div class="output" id="bmiOutput" aria-live="polite"></div>
+    <!-- Date Difference Calculator -->
+    <div class="card" id="dateDifference">
+      <h2>Date Difference Calculator</h2>
+      <label for="startDate">Start Date:</label>
+      <input type="date" id="startDate" aria-label="Start date" />
+      <label for="endDate" style="margin-top: 10px;">End Date:</label>
+      <input type="date" id="endDate" aria-label="End date" />
+      <button onclick="calculateDateDiff()">Calculate Difference</button>
+      <div class="output" id="dateDiffOutput" aria-live="polite"></div>
     </div>
-
   </div>
 
   <script>
-    // Random Number Generator
-    function generateRandom() {
-      const digits = parseInt(document.getElementById('digitCount').value);
-      if (digits < 1) return;
-      const min = Math.pow(10, digits - 1);
-      const max = Math.pow(10, digits) - 1;
-      const result = Math.floor(Math.random() * (max - min + 1)) + min;
-      const output = document.getElementById('randomOutput');
-      output.innerHTML = `Result: ${result} <button class="copy-btn" onclick="copyText('${result}')">Copy</button>`;
+    // Dark mode toggle and remember preference
+    const darkToggle = document.querySelector('.dark-toggle');
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+    }
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.body.classList.add('dark-mode');
     }
 
-    // Basic Calculator
+    // Random Number Generator
+    function generateRandom() {
+      const digitCount = parseInt(document.getElementById('digitCount').value);
+      if (isNaN(digitCount) || digitCount < 1) return;
+      const min = 10 ** (digitCount - 1);
+      const max = (10 ** digitCount) - 1;
+      const num = Math.floor(Math.random() * (max - min + 1)) + min;
+      setOutput('randomOutput', num.toString());
+    }
+
+    // Calculator
     function calculate() {
       const num1 = parseFloat(document.getElementById('calcNum1').value);
       const num2 = parseFloat(document.getElementById('calcNum2').value);
       const op = document.getElementById('calcOperation').value;
-
       if (isNaN(num1) || isNaN(num2)) {
-        return displayCalcOutput("Please enter valid numbers");
+        setOutput('calcOutput', 'Please enter valid numbers');
+        return;
       }
-
-      let result;
-
+      let res;
       switch (op) {
-        case "add": result = num1 + num2; break;
-        case "subtract": result = num1 - num2; break;
-        case "multiply": result = num1 * num2; break;
-        case "divide": result = num2 !== 0 ? num1 / num2 : "Error (div by zero)"; break;
-        default: result = "Invalid operation";
+        case 'add': res = num1 + num2; break;
+        case 'subtract': res = num1 - num2; break;
+        case 'multiply': res = num1 * num2; break;
+        case 'divide': 
+          if (num2 === 0) {
+            setOutput('calcOutput', 'Cannot divide by zero');
+            return;
+          }
+          res = num1 / num2; 
+          break;
       }
-
-      displayCalcOutput(result);
-    }
-    function displayCalcOutput(result) {
-      const out = document.getElementById('calcOutput');
-      out.innerHTML = `Result: ${result} <button class="copy-btn" onclick="copyText('${result}')">Copy</button>`;
+      setOutput('calcOutput', res.toString());
     }
 
     // Unit Converter
     function convert() {
-      const value = parseFloat(document.getElementById('inputValue').value);
+      const val = parseFloat(document.getElementById('inputValue').value);
       const type = document.getElementById('conversionType').value;
-      if (isNaN(value)) {
-        return displayConvertOutput("Please enter a valid number");
+      if (isNaN(val)) {
+        setOutput('convertOutput', 'Please enter a valid number');
+        return;
       }
       let result;
-
-      switch (type) {
-        case "cmToMm": result = (value * 10).toFixed(2) + " mm"; break;
-        case "mmToCm": result = (value / 10).toFixed(2) + " cm"; break;
-        case "inchToCm": result = (value * 2.54).toFixed(2) + " cm"; break;
-        case "cmToInch": result = (value / 2.54).toFixed(2) + " in"; break;
-        case "literToMl": result = (value * 1000).toFixed(2) + " ml"; break;
-        case "mlToLiter": result = (value / 1000).toFixed(3) + " liters"; break;
-        case "kgToGram": result = (value * 1000).toFixed(2) + " g"; break;
-        case "gramToKg": result = (value / 1000).toFixed(3) + " kg"; break;
-        case "mileToKm": result = (value * 1.60934).toFixed(3) + " km"; break;
-        case "kmToMile": result = (value / 1.60934).toFixed(3) + " miles"; break;
-        default: result = "Unknown conversion";
+      switch(type) {
+        case 'cmToMm': result = val * 10; break;
+        case 'mmToCm': result = val / 10; break;
+        case 'inchToCm': result = val * 2.54; break;
+        case 'cmToInch': result = val / 2.54; break;
+        case 'literToMl': result = val * 1000; break;
+        case 'mlToLiter': result = val / 1000; break;
+        case 'kgToGram': result = val * 1000; break;
+        case 'gramToKg': result = val / 1000; break;
+        case 'mileToKm': result = val * 1.60934; break;
+        case 'kmToMile': result = val / 1.60934; break;
+        default: result = val;
       }
-
-      displayConvertOutput(result);
-    }
-    function displayConvertOutput(result) {
-      const out = document.getElementById('convertOutput');
-      out.innerHTML = `Converted: ${result} <button class="copy-btn" onclick="copyText('${result}')">Copy</button>`;
+      setOutput('convertOutput', result.toFixed(4));
     }
 
-    // Currency Converter (using static exchange rates for demo)
-    const exchangeRates = {
+    // Currency Converter with static rates (example)
+    const rates = {
       USD: 1,
       EUR: 0.92,
       GBP: 0.81,
-      JPY: 145.2,
-      AUD: 1.45,
-      CAD: 1.34,
-      INR: 83.1,
-      CNY: 6.97
+      JPY: 138.44,
+      AUD: 1.48,
+      CAD: 1.36,
+      INR: 83.74,
+      CNY: 7.18
     };
-
     function convertCurrency() {
       const amount = parseFloat(document.getElementById('currencyAmount').value);
       const from = document.getElementById('currencyFrom').value;
       const to = document.getElementById('currencyTo').value;
-
       if (isNaN(amount) || amount < 0) {
-        return displayCurrencyOutput("Please enter a valid positive amount");
+        setOutput('currencyOutput', 'Please enter a valid positive amount');
+        return;
+      }
+      if (!(from in rates) || !(to in rates)) {
+        setOutput('currencyOutput', 'Unsupported currency');
+        return;
+      }
+      const usdAmount = amount / rates[from];
+      const converted = usdAmount * rates[to];
+      setOutput('currencyOutput', `${converted.toFixed(2)} ${to}`);
+    }
+
+    // Password Generator
+    function generatePassword() {
+      const length = parseInt(document.getElementById('passLength').value);
+      if (isNaN(length) || length < 4 || length > 64) {
+        setOutput('passwordOutput', 'Length must be between 4 and 64');
+        return;
+      }
+      const includeUpper = document.getElementById('includeUpper').checked;
+      const includeLower = document.getElementById('includeLower').checked;
+      const includeNumbers = document.getElementById('includeNumbers').checked;
+      const includeSymbols = document.getElementById('includeSymbols').checked;
+
+      let charSet = '';
+      if (includeUpper) charSet += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      if (includeLower) charSet += 'abcdefghijklmnopqrstuvwxyz';
+      if (includeNumbers) charSet += '0123456789';
+      if (includeSymbols) charSet += '!@#$%^&*()-_=+[]{}|;:,.<>?';
+
+      if (charSet.length === 0) {
+        setOutput('passwordOutput', 'Select at least one character type');
+        return;
       }
 
-      if (!(from in exchangeRates) || !(to in exchangeRates)) {
-        return displayCurrencyOutput("Currency not supported");
+      let password = '';
+      for (let i = 0; i < length; i++) {
+        password += charSet.charAt(Math.floor(Math.random() * charSet.length));
       }
-
-      // Convert amount to USD base, then to target
-      const amountInUSD = amount / exchangeRates[from];
-      const converted = amountInUSD * exchangeRates[to];
-      const result = converted.toFixed(4);
-
-      displayCurrencyOutput(`${amount} ${from} = ${result} ${to}`);
-    }
-    function displayCurrencyOutput(result) {
-      const out = document.getElementById('currencyOutput');
-      out.innerHTML = `${result} <button class="copy-btn" onclick="copyText('${result}')">Copy</button>`;
+      setOutput('passwordOutput', password);
     }
 
-    // Percentage Calculator
-    function calculatePercentage() {
-      const val = parseFloat(document.getElementById('percentageValue').value);
-      const total = parseFloat(document.getElementById('percentageTotal').value);
-      if (isNaN(val) || isNaN(total) || total === 0) {
-        return displayPercentageOutput("Please enter valid numbers (total not zero)");
+    // Text Converter
+    function convertText() {
+      const text = document.getElementById('textInput').value;
+      const type = document.getElementById('textConversionType').value;
+      let result = '';
+      switch(type) {
+        case 'uppercase':
+          result = text.toUpperCase();
+          break;
+        case 'lowercase':
+          result = text.toLowerCase();
+          break;
+        case 'capitalize':
+          result = text.replace(/\b\w/g, c => c.toUpperCase());
+          break;
+        case 'reverse':
+          result = text.split('').reverse().join('');
+          break;
+        case 'removeSpaces':
+          result = text.replace(/\s+/g, ' ').trim();
+          break;
+        default:
+          result = text;
       }
-      const percent = ((val / total) * 100).toFixed(2);
-      displayPercentageOutput(`${percent} %`);
-    }
-    function displayPercentageOutput(result) {
-      const out = document.getElementById('percentageOutput');
-      out.innerHTML = `Percentage: ${result} <button class="copy-btn" onclick="copyText('${result}')">Copy</button>`;
+      setOutput('textOutput', result);
     }
 
-    // Age Calculator
-    function calculateAge() {
-      const dobInput = document.getElementById('birthDate').value;
-      if (!dobInput) {
-        return displayAgeOutput("Please select your birth date");
+    // Date Difference Calculator
+    function calculateDateDiff() {
+      const start = document.getElementById('startDate').value;
+      const end = document.getElementById('endDate').value;
+      if (!start || !end) {
+        setOutput('dateDiffOutput', 'Please select both dates');
+        return;
       }
-      const dob = new Date(dobInput);
-      const today = new Date();
-
-      if (dob > today) {
-        return displayAgeOutput("Birth date cannot be in the future");
+      const startDate = new Date(start);
+      const endDate = new Date(end);
+      if (startDate > endDate) {
+        setOutput('dateDiffOutput', 'Start date must be before end date');
+        return;
       }
-
-      let age = today.getFullYear() - dob.getFullYear();
-      const m = today.getMonth() - dob.getMonth();
-      if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
-        age--;
-      }
-
-      displayAgeOutput(`${age} year(s) old`);
-    }
-    function displayAgeOutput(result) {
-      const out = document.getElementById('ageOutput');
-      out.innerHTML = `Age: ${result} <button class="copy-btn" onclick="copyText('${result}')">Copy</button>`;
+      const diffMs = endDate - startDate;
+      const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+      setOutput('dateDiffOutput', `${diffDays} day(s)`);
     }
 
-    // BMI Calculator
-    function calculateBMI() {
-      const weight = parseFloat(document.getElementById('bmiWeight').value);
-      const heightCm = parseFloat(document.getElementById('bmiHeight').value);
+    // Helper for output with copy button
+    function setOutput(id, text) {
+      const container = document.getElementById(id);
+      container.innerHTML = '';
 
-      if (isNaN(weight) || isNaN(heightCm) || weight <= 0 || heightCm <= 0) {
-        return displayBMIOutput("Please enter valid positive numbers");
-      }
+      if (!text) return;
 
-      const heightM = heightCm / 100;
-      const bmi = (weight / (heightM * heightM)).toFixed(2);
+      const span = document.createElement('span');
+      span.textContent = text;
 
-      let category = "";
-      if (bmi < 18.5) category = "Underweight";
-      else if (bmi < 25) category = "Normal weight";
-      else if (bmi < 30) category = "Overweight";
-      else category = "Obesity";
+      const btn = document.createElement('button');
+      btn.className = 'copy-btn';
+      btn.title = 'Copy to clipboard';
+      btn.setAttribute('aria-label', 'Copy output to clipboard');
+      btn.innerHTML = '📋';
+      btn.onclick = () => {
+        navigator.clipboard.writeText(text).then(() => {
+          btn.textContent = '✔️';
+          setTimeout(() => { btn.textContent = '📋'; }, 1500);
+        }).catch(() => {
+          alert('Failed to copy');
+        });
+      };
 
-      displayBMIOutput(`BMI: ${bmi} (${category})`);
-    }
-    function displayBMIOutput(result) {
-      const out = document.getElementById('bmiOutput');
-      out.innerHTML = `${result} <button class="copy-btn" onclick="copyText('${result}')">Copy</button>`;
-    }
-
-    // Dark mode toggle
-    function toggleDarkMode() {
-      document.body.classList.toggle('dark-mode');
-    }
-
-    // Copy to clipboard helper
-    function copyText(text) {
-      navigator.clipboard.writeText(text).then(() => {
-        alert(`Copied: ${text}`);
-      });
+      container.appendChild(span);
+      container.appendChild(btn);
     }
   </script>
 </body>
